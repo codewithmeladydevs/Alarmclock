@@ -11,14 +11,14 @@ import pygame
 
 def alarm(set_alarm_timer):
     while True:
-        time.sleep(1)
-        current_time = datetime.datetime.now()
-        now = current_time.strftime("%H:%M:%S")
+        time.sleep(1)  # sleep(secs) is a method function inside the module time, which suspends execution of the calling thread for the given number of secs
+        current_time = datetime.datetime.now()  # now(tz=None) is a class method of the class datetime contained in the module datetime it returns the current local date and time
+        now = current_time.strftime("%H:%M:%S") # returns a string representing the date, controlled by explicit format
         date = current_time.strftime("%d/%m/%Y")
         print("The Set Date is:",date)
         print(now)
-        pygame.init()
-        pygame.mixer.init()
+        pygame.init()   # initialize all imported pygame modules
+        pygame.mixer.init() # initialize the mixer module for sound loading and playback
         if now == set_alarm_timer:
             print("Time to Wake up")
             #winsound.PlaySound("sound.wav",winsound.SND_ASYNC)
@@ -27,10 +27,10 @@ def alarm(set_alarm_timer):
             break
 
 def actual_time():
-    set_alarm_timer = f"{hour.get()}:{min.get()}:{sec.get()}"
+    set_alarm_timer = f"{hour.get()}:{min.get()}:{sec.get()}" # f-string - formatted string literals are string literals that have a 'f' at the beginning and curly braces containing expressions that will be replaced with their values.  The expressions are evaluted at runtime and then formatted using the __format__ protocol.
     alarm(set_alarm_timer)
 
-clock = Tk()
+clock = Tk()  # initialize tkinter
 clock.title("DataFlair Alarm Clock")
 clock.iconbitmap(r"dataflair-logo.ico")
 clock.geometry("400x200")
@@ -39,7 +39,7 @@ addTime = Label(clock,text = "Hour  Min   Sec",font=60).place(x = 110)
 setYourAlarm = Label(clock,text = "When to wake you up",fg="blue",relief = "solid",font=("Helevetica",7,"bold")).place(x=0, y=29)
 
 # The Variables we require to set the alarm(initialization):
-hour = StringVar()
+hour = StringVar() # StringVar() is tkinter types which holds a string
 min = StringVar()
 sec = StringVar()
 
