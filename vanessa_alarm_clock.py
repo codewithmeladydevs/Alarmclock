@@ -10,10 +10,8 @@ from threading import *
 
 print("Hello World. Time to Create an Alarm Clock.")
 
-running = True # Global Flag
 
 def set_time():
-#    string = time.strftime('%H:%M:%S %p')
     get_current_time = datetime.now()
     current_time = get_current_time.strftime("%H:%M:%S %p")
     lbl.config(text = current_time)
@@ -26,7 +24,6 @@ def threading():
     t1.start()
 
 def set_alarm_clock():
-    global running 
     alarm_time_input = f"{hour.get()}:{min.get()}:{sec.get()}"
 
     while True:
@@ -37,7 +34,6 @@ def set_alarm_clock():
             break
 
 def play_alarm():
-    global running 
 
     print("Wake Up!")
     pygame.mixer.init()
@@ -47,8 +43,7 @@ def play_alarm():
     
 
 def stop_alarm_clock():
-    global running
-    running = False
+
     pygame.mixer.music.stop()
 
 
@@ -79,3 +74,4 @@ submit = tk.Button(clock,text = "Set Alarm",fg="red",width = 10,command=threadin
 stop = tk.Button(clock, text = "Stop Alarm",fg="red",width=10, command=stop_alarm_clock).place(x=240,y=140)
 
 clock.mainloop()
+
